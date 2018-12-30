@@ -1,0 +1,222 @@
+
+
+
+
+table {
+  font-family: arial, sans-serif;
+
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 2%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
+.pagination-wrapper {
+  text-align: center;
+
+}
+
+.pagination {
+  display: inline-block;
+  height: 70px;
+  margin-top: 70px;
+  padding: 0 25px;
+  border-radius: 35px;
+  background-color: $grey-light;
+
+  @include breakpoint(1199px) {
+    height: 50px;
+    margin-top: 50px;
+    padding: 0 10px;
+    border-radius: 25px;
+  }
+}
+
+.page-numbers {
+  display: block;
+  padding: 0 25px;
+  float: left;
+  transition: $duration $easing;
+  color: $grey;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  line-height: 70px;
+
+  &:hover,
+  &.current {
+    background-color: $green;
+    color: $white;
+  }
+
+  &.prev:hover,
+  &.next:hover {
+    background-color: transparent;
+    color: $green;
+  }
+
+  @include breakpoint(1199px) {
+    padding: 0 15px;
+    font-size: 16px;
+    line-height: 50px;
+  }
+
+  @include breakpoint(touch) {
+    padding: 0 14px;
+    display: none;
+
+    &:nth-of-type(2) {
+      position: relative;
+      padding-right: 50px;
+
+      &::after {
+        content: '...';
+        position: absolute;
+        font-size: 25px;
+        top: 0;
+        left: 45px;
+      }
+    }
+
+    &:nth-child(-n+3),
+    &:nth-last-child(-n+3) {
+      display: block;
+    }
+
+    &:nth-last-child(-n+4) {
+      padding-right: 14px;
+
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+
+
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+
+
+.expanding-search-form {
+  position: relative;
+  top: 40%;
+  left: 35%;
+  display: inline-block;
+ 
+}
+.expanding-search-form .search-label {
+  position: absolute;
+
+ 
+/*  z-index: 2;
+  cursor: pointer;
+  border-radius: 3px;*/
+  /*transition: 250ms all ease-in-out;*/
+}
+.expanding-search-form .search-input {
+  position: relative;
+ 
+  height: 34px;
+  width: 250px;
+  float: left;
+  
+/*  transition: 250ms all ease-in-out;*/
+}
+.expanding-search-form .search-input:focus {
+  width: 250px;
+  outline: none;
+}
+.expanding-search-form .search-input:focus + .search-label {
+  border-color: #2299ff;
+}
+.expanding-search-form .button {
+  position: relative;
+  top: 0;
+  display: inline-block;
+  float: left;
+  padding: 0 10px;
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: #2299ff;
+  text-align: center;
+ /* transition: 250ms all ease-in-out;*/
+}
+.expanding-search-form .button:hover {
+  background-color: #0080ee;
+}
+.expanding-search-form .search-drop {
+  position: relative;
+  top: 0;
+  display: inline-block;
+  float: left;
+  padding: 3px;
+}
+.expanding-search-form .search-drop.open .drop-menu {
+  display: block;
+}
+.expanding-search-form .drop-toggle {
+  height: 28px;
+  font-size: 12px;
+  line-height: 28px;
+  border-radius: 2px;
+  z-index: 3;
+}
+.expanding-search-form .drop-menu {
+  position: absolute;
+  top: calc(100% - 1px);
+  display: none;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  z-index: 3;
+  transition: 250ms all ease-in-out;
+}
+.expanding-search-form .drop-menu > li > a {
+  display: block;
+  padding: 4px 12px;
+  color: #2299ff;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: 250ms all ease-in-out;
+}
+.expanding-search-form .drop-menu > li > a:hover {
+  color: #fff;
+  background-color: #2299ff;
+}
+.expanding-search-form .drop-menu > .menu-active {
+  display: none;
+}
+.expanding-search-form .search-button {
+  height: 34px;
+  z-index: 3;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.expanding-search-form .search-button .icon {
+  font-size: 20px;
+}

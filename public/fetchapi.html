@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch API</title>
+    
+</head>
+<body>
+    <!--   <form  id="postData">
+        <div>
+            <input type="text" name="" id="tittle">
+        </div>
+        <div>
+            <textarea name="" id="body" cols="20" rows="5"></textarea>
+        </div>
+        <input type="submit" value="SEND POST">
+        <div id = "out"></div>
+    </form> -->
+
+        <form id = "postData" name="incoming" style="
+    width: 70%;
+    padding-left: 20%;
+    padding-top: 5%;">
+          <label for="fname">Case Number</label>
+                     <input type="text" name="" id="tittle">
+
+          <label for="lname">Tooth Number</label>
+          <input type="text" id="tnum" name="toothnumber" placeholder="">
+          
+          <label for="dname">Doctor Name</label>
+          <input type="text" id="dname" name="docname" placeholder="">
+
+          <label for="pname">patient Name</label>
+          <input type="text" id="pname" name="patient" placeholder="">
+
+          <label for="country">Status</label>
+          <select id="status" name="country" onchange="statusDropDown()">
+            <option value="">Please Select</option>
+            <option value="In process">In process</option>
+            <option value="Process Finished">Process Finished</option>
+            
+          </select>
+  
+           <input type="submit" value="SEND POST">
+            <div id = "out"></div>
+          </form>
+
+
+  
+
+
+
+
+
+
+</body>
+<script type="text/javascript">
+ document.getElementById('postData').addEventListener('submit', postData);
+
+ function postData(event){
+            event.preventDefault();
+            	let tittle = document.getElementById('tittle').value;
+                let tooth = document.getElementById('tnum').value;
+                let doc = document.getElementById('dname').value;
+                let stat = document.getElementById('status').value;
+                let pat = document.getElementById('pname').value;
+          console.log(tittle)
+          console.log(tooth)
+          console.log(doc)
+          console.log("status------------------->	",stat)
+            	var reqObj ={
+					"caseNumber" : tittle,
+					"toothNumber": tooth,
+					"doctorName" : doc,
+					"user_id" : "5c0aa20a6ebbb603a0ec068a",
+					"status"  : stat,
+					"patientName": pat
+				}
+            fetch('http://localhost:6001/api/v1/incoming/addIncoming', {
+                method: 'POST',
+                //headers : new Headers(),
+               	headers : {
+		            "Content-Type": "application/json; charset=utf-8"
+		             // "Authorization": "5asvhff4jgjkjrbd1hjj5hkjhkkghk87gdsgbshb5hsh/gg4sa5gaga4fafafa4g5jngh5j4fgjfhj54fgj54fg5j",
+		        },
+		         body:JSON.stringify(reqObj)
+            }).then((res) => res.json())
+            .then((data) => {
+            	console.log(data)
+				alert(JSON.stringify(data));            	 
+            })
+            .catch((err)=>{console.log(err);
+            	alert(JSON.stringify(err))
+            })
+        }
+        	function statusDropDown(){
+	        dropStatus = document.getElementById("status").value;
+	  		console.log(dropStatus);
+	}
+</script>
+
+</html>

@@ -1,0 +1,293 @@
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+ 
+   Font Awesome -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="css/ionicons.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="css/AdminLTE.css">
+  <link rel="stylesheet" href="css/custom.css">
+ 
+  <link rel="stylesheet" href="css/_all-skins.css">
+  <link rel="stylesheet" href="css/historic.css">
+
+  <link rel="stylesheet" href="css/search.css">
+
+ 
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+ 
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
+
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css"  href="css/style.css">
+
+
+</head>
+<script type="text/javascript">
+  var userInfo =  JSON.parse(sessionStorage.getItem("user"));
+  var user_id = null;
+    if(!userInfo){
+        location.replace("./index.html");
+    }
+    else{
+      user_id = userInfo.id;
+      var userName = userInfo.userName;
+      var userType = userInfo.userType;
+     
+      
+    }
+</script>
+<body class="hold-transition skin-blue sidebar-mini" scroll="no" >
+<!-- Navigation
+    ==========================================-->
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="home.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image" style="width: 30%;">      <!-- logo for regular state and mobile devices -->
+      
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+         
+          <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs" id = "username"></span>
+              <script type="text/javascript">document.getElementById("username").innerHTML = userName;</script>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                <p id = "OfficeName">
+                  Kerney - Office
+                 <div id = "location"><small>Kerney Office</small></div>
+                  
+                </p>
+               <script type="text/javascript">document.getElementById("OfficeName").innerHTML = userName;
+                document.getElementById("location").innerHTML = userInfo.address;</script>
+              </li>
+              <!-- Menu Body -->
+          
+              <!-- Menu Footer-->
+              <li class="user-footer">
+               
+                <div class="pull-right">
+                  <a class="btn btn-default btn-flat" id = "logout" onclick="return logout()"> Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button 
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li> -->
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+         <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> IMAGE CIRCLE -->
+        </div>
+       
+      </div>
+      
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        
+        <li class=" treeview"></li>
+     <li><a href="home.html" class="btn btn-lg  " ><i class="fa fa-home"></i> <span>Home</span></a></li>
+
+         <li id = "incomingTab"><a href="incoming.html" class="btn btn-lg" ><i class="fa fa-suitcase"></i> <span>Incoming Case</span></a></li>
+         <script type="text/javascript">
+           if(userType !=  "admin"){
+              document.getElementById("incomingTab").style.display = 'none';
+           }
+         </script>
+         <li><a href="history.html" class="btn btn-lg " ><i class="fa fa-database"></i> <span>Historic Data</span></a></li>
+          <li id="addOffice"><a href="addOffice.html" class="btn btn-lg" ><i class="fa fa-plus-square"></i> <span>Add Office</span></a></li>
+           <script type="text/javascript">
+           if(userType !=  "admin"){
+              document.getElementById("addOffice").style.display = 'none';
+           }
+         </script>
+          <li><a href="delivered.html" class="btn btn-lg " ><i class="fa fa-briefcase"></i> <span>Delivered Cases</span></a></li> 
+   </ul>
+    </section> 
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+      <form class="expanding-search-form">
+  <div class="search-drop">
+    <button class="button drop-toggle" type="button">
+      <span class="toggle-active">Everything</span>
+      <span class="ion-arrow-down-b"></span>
+    </button>
+    <ul class="drop-menu" style="width: 150%;">
+      <li class="menu-active"><a href="#">Search By</a></li>
+      <li><a id = "filter" onclick="return serchFilter('pat')">Patient Name</a></li>     
+      <li><a id = "filter" onclick="return serchFilter('caseno')">Case Number</a></li>
+    </ul>
+  </div>
+  <input class="search-input" id="global-search" type="search" placeholder="Search">
+  <label class="search-label" for="global-search">
+        <span class="sr-only">Global Search</span>
+    </label>
+  <button class="button search-button" type="button" onclick="searchAPI()">
+        <span class="icon ion-search">
+            <span class="sr-only">Search</span>
+        </span>
+    </button>
+</form>
+  <div> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+ 
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+   <!--  <div >
+      <ul class="tab-group">
+        <li class="tab active"><a href="#about" class="page-scroll ">Incoming Case</a></li>
+         <li class="tab "><a href="#services" class="page-scroll ">Processed Case</a></li>
+      </ul>
+    
+    </div> -->
+     <div class="btn-group" style="margin-left: 37%;">
+  <button><a href="#about" class="page-scroll ">In process</a></button>
+  <button><a href="#services" class="page-scroll ">Out For Delivery</a></button>
+  <button><a href="#deliveredee" class="page-scroll ">Delivered</a></button>
+ 
+</div> <br>
+    <!-- /.navbar-collapse --> 
+  </div>
+
+<!-- Header -->
+
+<!-- About Section -->
+<br> <div id="about">
+  <h2 align="center">In process</h2>
+
+<table  id ="processing">
+  <tr>
+    <th>Case Number</th>
+    <th>Name</th>    
+    <th>Status</th>
+  
+  </tr>
+  
+</table>
+
+</div>
+<!-- Services Section -->
+<div id="services">
+  <h2 align="center">Out For Delivery</h2>
+
+<table id ="complete">
+  <tr>
+    <th>Case Number</th>
+    <th>Name</th>   
+    <th>Status</th>
+     
+  </tr>
+  
+
+</table>
+
+
+  </div> 
+
+  <div id="deliveredee">
+  <h2 align="center">Delivered</h2>
+
+<table id ="delivered">
+  <tr>
+    <th>Case Number</th>
+    <th>Name</th>   
+    <th>Status</th>
+     
+  </tr>
+  
+
+</table>
+
+
+  </div> 
+
+</div>
+
+
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+  
+    <strong>Copyright &copy; 2018 </strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+ 
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+</div> 
+
+       
+<!-- Portfolio Section -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/jquery.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="js/jquery-ui.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+<!-- Bootstrap 3.3.7 -->
+<script type="text/javascript" src="js/bootstrap.js"></script> 
+<!-- Bootstrap WYSIHTML5 -->
+<script src="js/bootstrap3-wysihtml5.all.js"></script>
+<!-- Slimscroll -->
+
+<!-- AdminLTE App -->
+<script src="js/adminlte.js"></script>
+<script src="js/loginfunc.js"></script>
+
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+
+ 
+<!-- <script type="text/javascript" src="js/main.js"></script>
+ --><script src = "js/logout.js"></script>
+<script src = "js/searchFunc.js"></script>
+
+</body>
+</html>

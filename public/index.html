@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/login.css">
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+
+
+</head>
+<body>
+
+<div class="login-wrap">
+  <h2>Login</h2>
+  
+  <div class="form">
+  <!--<form name="login" onsubmit="return validateLogin()"> -->
+    <form action="login.php" id="login" method="post">
+  <input type="text" id="username" required autocomplete="off">
+    <input type="password" id="password" required autocomplete="off">
+    <button type="submit" name="submit" value="Login">Login</button> 
+   </form>
+   <div id="errorop"> </div>
+
+  </div> 
+  <!--<div class="form">
+  <form action="login.php" method="post">
+    <p>Username: <input type="text" name="username"></p>
+    <p>Password: <input type="password" name="password"></p>
+    <p><input type="submit" name="submit" value="Login"></p>
+</form> -->
+ </div>
+</div>
+<script src="js/login.js"></script>
+</body>
+</html>
