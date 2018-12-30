@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"auridental.offices"},{"v":2,"key":{"phoneNo":1},"name":"phoneNo_1","ns":"auridental.offices","background":true}],"uuid":"58701b714765423a880dfb1c0ba0e315"}
