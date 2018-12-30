@@ -2,7 +2,7 @@
 // CALL LOGIN API
 
  //var baseUrl  = "http://localhost:6001/api/v1/" 
- var baseUrl  = "http://35.237.40.210/api/v1/" ;
+ var baseUrl  = "http://35.237.40.210:6001/api/v1/";
 
  document.getElementById('login').addEventListener('submit', postData);
 
