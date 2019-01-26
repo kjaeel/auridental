@@ -93,7 +93,8 @@ function getAPI(){
 		    				var row = tableProcessing.insertRow(-1);
 						    var caseno = row.insertCell(0);
 						    var naam = row.insertCell(1);					    
-   						  var status = row.insertCell(2);
+                 var status = row.insertCell(2);
+                 
                 if(userType =='admin'){
                   var dynamicButton = row.insertCell(3);
                   var button = document.createElement('button');
@@ -110,9 +111,13 @@ function getAPI(){
                 }else{
                    caseno.innerHTML = incoming[i].caseNumber;
                 }
+                var date = row.insertCell(4);
                 // if(incoming[i].hasOwnProperty("pat"))
                   naam.innerHTML = incoming[i].pat;               
-						    status.innerHTML = incoming[i].status;
+                status.innerHTML = incoming[i].status;
+                var finalSemiDate = new Date(incoming[i].createdAt);
+                var finalDate = finalSemiDate.getDate()+"-"+(finalSemiDate.getMonth()+1)+"-"+finalSemiDate.getFullYear();
+                date.innerHTML = finalDate;//new Date(incoming[i].createdAt).toISOString().substring(10, 10);
 				
 		    			}else if(incoming[i].status === "Process Finished"){
 		    				var row = tableComplete.insertRow(-1);
@@ -137,7 +142,11 @@ function getAPI(){
                 }else{
                    caseno.innerHTML = incoming[i].caseNumber;
                 }
-
+                var date = row.insertCell(4);
+                var finalSemiDate = new Date(incoming[i].createdAt);
+                var finalDate = finalSemiDate.getDate()+"-"+(finalSemiDate.getMonth()+1)+"-"+finalSemiDate.getFullYear();
+                date.innerHTML = finalDate;
+                //date.innerHTML = new Date(incoming[i].createdAt).toISOString().substring(0, 10);
 		    			}
 					    
 		    		}

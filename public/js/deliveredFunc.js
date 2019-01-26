@@ -85,10 +85,15 @@ function getAPI(){
 		    				var row = tableProcessing.insertRow(-1);
 						    var caseno = row.insertCell(0);
 						    var name = row.insertCell(1);					    
-   						  var status = row.insertCell(2);
+                 var status = row.insertCell(2);
+                 var date = row.insertCell(3);
                 caseno.innerHTML = incoming[i].caseNumber;
 						    name.innerHTML = incoming[i].pat;						   
-						    status.innerHTML = incoming[i].status;
+                status.innerHTML = incoming[i].status;
+                var finalSemiDate = new Date(incoming[i].createdAt);
+                var finalDate = finalSemiDate.getDate()+"-"+(finalSemiDate.getMonth()+1)+"-"+finalSemiDate.getFullYear();
+                date.innerHTML = finalDate;
+               // date.innerHTML = incoming[i].createdAt;
 					    
 		    		}
 		    	

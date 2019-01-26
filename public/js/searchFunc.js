@@ -57,18 +57,28 @@ function searchAPI(){
 		    				var row = tableProcessing.insertRow(-1);
 						    var caseno = row.insertCell(0);						    
 						    var patient = row.insertCell(1);
-   						    var status = row.insertCell(2);
+							   var status = row.insertCell(2);
+							   var date = row.insertCell(3);
 							caseno.innerHTML = incoming[i].caseNumber;													  
 						   	patient.innerHTML = incoming[i].pat;
-						   	status.innerHTML = incoming[i].status;
+							   status.innerHTML = incoming[i].status;
+							   var finalSemiDate = new Date(incoming[i].createdAt);
+                var finalDate = finalSemiDate.getDate()+"-"+(finalSemiDate.getMonth()+1)+"-"+finalSemiDate.getFullYear();
+                date.innerHTML = finalDate;
+							   //date.innerHTML = incoming[i].createdAt;
 		    			}else if(incoming[i].status === "Process Finished"){
 		    				var row = tableComplete.insertRow(-1);
 						    var caseno = row.insertCell(0);
 						    var naam = row.insertCell(1);						   
-   						  	var status = row.insertCell(2);
+								 var status = row.insertCell(2);
+								 var date = row.insertCell(3);
                				naam.innerHTML = incoming[i].pat;               
 						    status.innerHTML = incoming[i].status;
- 						   	caseno.innerHTML = incoming[i].caseNumber;
+								caseno.innerHTML = incoming[i].caseNumber;
+								var finalSemiDate = new Date(incoming[i].createdAt);
+                var finalDate = finalSemiDate.getDate()+"-"+(finalSemiDate.getMonth()+1)+"-"+finalSemiDate.getFullYear();
+                date.innerHTML = finalDate;
+								//date.innerHTML = incoming[i].createdAt;
 			              
 
 					    }
@@ -77,11 +87,16 @@ function searchAPI(){
 		    				var row = tableDelivered.insertRow(-1);
 						    var caseno = row.insertCell(0);						   
 						    var patient = row.insertCell(1);
-   						    var status = row.insertCell(2);
+							   var status = row.insertCell(2);
+							   var date = row.insertCell(3);
 
 						    caseno.innerHTML = incoming[i].caseNumber;						    
 						    status.innerHTML = incoming[i].status;
- 						   	patient.innerHTML = incoming[i].pat;
+								patient.innerHTML = incoming[i].pat;
+								var finalSemiDate = new Date(incoming[i].createdAt);
+                var finalDate = finalSemiDate.getDate()+"-"+(finalSemiDate.getMonth()+1)+"-"+finalSemiDate.getFullYear();
+                date.innerHTML = finalDate;
+							//	date.innerHTML = incoming[i].createdAt;
 
 		    			}
 					    

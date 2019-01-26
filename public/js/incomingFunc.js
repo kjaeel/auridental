@@ -26,6 +26,7 @@ var officeId = null;
             	let tittle = document.getElementById('tittle').value;
                 let name = document.getElementById('pat').value;             
                 let stat = document.getElementById('status').value;
+               
                 
 
 

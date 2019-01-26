@@ -78,7 +78,6 @@ var addIncoming = function (userDetails) {
         if (err) {
           deferred.reject(err);
         } else {
-          delete incomingObj._doc.createdAt;
           delete incomingObj._doc.updatedAt;
           delete incomingObj._doc.__v;
           deferred.resolve(incomingObj);
@@ -116,7 +115,6 @@ var getIncoming = function(userDetails) {
   query.exec()
   .then(function (result) {
     for (var i = 0; i < result.length; i++) {
-          delete result[i]._doc.createdAt;
           delete result[i]._doc.updatedAt;
           delete result[i]._doc.__v;    
     };
@@ -162,7 +160,6 @@ var updateIncomingStatus = function () {
   query.exec()
   .then(function (result) {
     for (var i = 0; i < result.length; i++) {
-          delete result[i]._doc.createdAt;
           //delete result[i]._doc.updatedAt;
           delete result[i]._doc.__v;    
     };
@@ -207,7 +204,6 @@ var getDelivered = function(userDetails) {
   query.exec()
   .then(function (result) {
     for (var i = 0; i < result.length; i++) {
-          delete result[i]._doc.createdAt;
           //delete result[i]._doc.updatedAt;
           delete result[i]._doc.__v;    
     };
