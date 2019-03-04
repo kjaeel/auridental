@@ -7,7 +7,7 @@ var dropStatus = null;
   var userType = userInfo.userType;
   var officeId = false;
   var adminFlag = false;  
-
+  var adminFlagTable = false;
   console.log("user_id inside history func :",user_id);
    //event.preventDefault();      
 // GET USER API
@@ -96,6 +96,7 @@ function getAPI(){
                  var status = row.insertCell(2);
                  
                 if(userType =='admin'){
+                  adminFlagTable = true;
                   var dynamicButton = row.insertCell(3);
                   var button = document.createElement('button');
                   button.className = "w3-button w3-blue";
@@ -111,7 +112,11 @@ function getAPI(){
                 }else{
                    caseno.innerHTML = incoming[i].caseNumber;
                 }
-                var date = row.insertCell(4);
+                if(adminFlagTable){
+                  var date = row.insertCell(4);
+                }else{
+                  var date = row.insertCell(3);
+                }
                 // if(incoming[i].hasOwnProperty("pat"))
                   naam.innerHTML = incoming[i].pat;               
                 status.innerHTML = incoming[i].status;
@@ -128,6 +133,7 @@ function getAPI(){
 						    status.innerHTML = incoming[i].status;
  						   	
                  if(userType =='admin'){
+                  adminFlagTable = true;
                   var dynamicButton = row.insertCell(3);
                   var button = document.createElement('button');
                   button.className = "w3-button w3-blue";
@@ -142,7 +148,11 @@ function getAPI(){
                 }else{
                    caseno.innerHTML = incoming[i].caseNumber;
                 }
-                var date = row.insertCell(4);
+                if(adminFlagTable){
+                  var date = row.insertCell(4);
+                }else{
+                  var date = row.insertCell(3);
+                }
                 var finalSemiDate = new Date(incoming[i].createdAt);
                 var finalDate = finalSemiDate.getDate()+"-"+(finalSemiDate.getMonth()+1)+"-"+finalSemiDate.getFullYear();
                 date.innerHTML = finalDate;
